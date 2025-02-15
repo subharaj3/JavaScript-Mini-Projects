@@ -36,6 +36,15 @@ const newgame_maker=()=>{
     }
 }
 
+const resetter=()=>{
+    turnX=true;
+    for(let btn of btns){
+        btn.disabled=false;
+        btn.innerText="";
+        tie_cnt=0;
+    }
+}
+
 const displayWinner=(pos1)=>{
     msg.innerText=`The winner is ${pos1}.\nPress New game to play again!`;
     msg_cont.classList.remove("hide");
@@ -46,6 +55,7 @@ btns.forEach((buttons)=>{
     buttons.addEventListener("click",()=>{
         if(turnX){
             buttons.innerText="X";
+            buttons.style.color="#ef3054";
             buttons.disabled=true;
             turnX=false;
             tie_cnt++;
@@ -79,4 +89,4 @@ const checkWinner=()=>{
 }
 
 newgame_btn.addEventListener("click",newgame_maker);
-reset_btn.addEventListener("click",newgame_maker);
+reset_btn.addEventListener("click",resetter);
