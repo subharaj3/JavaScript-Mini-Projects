@@ -1,0 +1,135 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: rgb(127, 182, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background-color: antiquewhite;
+    color: black;
+    height: 50vh;
+    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: 10rem 0 10rem 0;
+    padding: 2rem;
+    border-radius: 5rem;
+    border: none;
+    box-shadow: 1rem 1rem 2rem black;
+    text-align: center;
+}
+
+h3{
+    align-content: center;
+    text-align: left;
+    height: 2vw;
+    width: 50vw;
+    padding-left: 2rem;
+    font-size: 1.33rem;
+}
+
+.search{
+    width: 50vw;
+    height: 2.5vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 2rem;
+    background-color: white;
+    margin: 1rem 0 1rem 0;
+}
+
+.Searchbox{
+    width: 40vw;
+    height: 2.5vw;
+    border: none;
+    border-radius: 2rem;
+    padding-left: 1rem;
+}
+
+.Searchbox:focus{
+    border: none;
+    outline: none;
+}
+
+.Searchbtn{
+    width: 8.7vw;
+    background-color: rgb(255, 102, 46);
+    color: black;
+    border-radius: 2rem;
+}
+
+.Searchbtn:hover{
+    cursor: pointer;
+}
+
+.Searchbtn:active{
+    box-shadow: 0.2rem 0.2rem 0.4rem black;
+}
+
+.task-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+    width: 45vw;
+    height: 35vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0 2.5rem 0 2.5rem;
+    color: grey;
+}
+
+.tasks{
+    display: flex;
+    width: 45vw;
+    font-size: 1.15rem;
+    align-items: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.task{
+    width: 1.2em;
+    height: 1.2rem;
+    accent-color: orangered;
+    border-radius: 50%;
+    margin: 0.3rem;
+}
+
+.task:checked + .task-text{
+    text-decoration: line-through;
+}
+
+.task-text{
+    height: 4vh;
+    width: 42vw;
+    display: flex;
+    align-items: center;
+}
+
+.cross{
+    position: relative;
+    right: 1rem;
+    background-color: #faebd7;
+    color: grey;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+
+.cross:hover{
+    color: red;
+    transform: scale(2);
+}
+
+.hide{
+    display: none;
+}

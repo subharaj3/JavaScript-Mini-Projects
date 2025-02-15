@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="todolist.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h3>To-Do List <i class="fa-solid fa-list-check"></i></h3>
+        <div class="search">
+            <input type="text" name="searchbox" placeholder="Eg. Study Mathematics" class="Searchbox">
+            <button class="Searchbtn">Add</button>
+        </div>
+        <div class="task-container">
+            <div class="tasks" id="task0">
+                <input type="checkbox" name="Example" class="task">
+                <p class="task-text">Eg. Study Mathematics</p>
+                <button class="cross" id="0">X</button>
+            </div>
+        </div>
+    </div>
+    <script src="todolist.js"></script>
+</body>
+</html>
