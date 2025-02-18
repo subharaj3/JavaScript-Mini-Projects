@@ -62,6 +62,7 @@ body{
 }
 
 .dis2{
+    direction: ltr;
     align-items: center;
     margin-bottom: 0.5rem;
     color: gray;
