@@ -82,9 +82,9 @@ h1{
 }
 
 .to-display,.from-display{
+    text-align: right;
     width: 15rem;
     padding-right: 3rem;
-    text-align: right;
 }
 
 #to-scale:focus,.to-display:focus,.from-display:focus,#from-scale:focus{

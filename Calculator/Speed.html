@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Converter</title>
+    <link rel="stylesheet" href="Speed.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Mass Converter <i class="fa-solid fa-temperature-low"></i></h1>
+        <div class="from-unit">
+            <h3 id="fuh">From : </h3>
+            <div class="dis1">
+                <select name="convert" id="from-scale">
+                    <option value="None" selected> ---None--- </option>
+                    <option value="Km/hr"> Kilometer per hour ( km/hr )</option>
+                    <option value="m/s"> Meter per second ( m/s )</option>
+                    <option value="mi/h"> Miles per hour ( mi/hr )</option>
+                </select>
+                <input class="from-display" type="text" placeholder="Type the Magnitude">
+            </div>
+        </div>
+        <div class="to-unit">
+            <h3 id="tuh">To : </h3>
+            <div class="dis2">
+                <select name="convert" id="to-scale">
+                    <option value="None" selected> ---None--- </option>
+                    <option value="Km/hr"> Kilometer per hour ( km/hr )</option>
+                    <option value="m/s"> Meter per second ( m/s )</option>
+                    <option value="mi/hr"> Miles per hour ( mi/hr )</option>
+                </select>
+                <input class="to-display" type="text" disabled placeholder="-">
+            </div>
+        </div>
+        <button class="btn" id="clear">Clear</button>
+        <button class="btn" id="convert">Convert</button>
+    </div>
+    <script src="Speed.js"></script>
+</body>
+</html>

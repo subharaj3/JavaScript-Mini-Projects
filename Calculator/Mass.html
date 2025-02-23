@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mass Converter</title>
+    <link rel="stylesheet" href="Mass.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Mass Converter <i class="fa-solid fa-weight-hanging"></i></h1>
+        <div class="from-unit">
+            <h3 id="fuh">From : </h3>
+            <div class="dis1">
+                <select name="convert" id="from-scale">
+                    <option value="None" selected> ---None--- </option>
+                    <option value="Kilogram"> Kilogram ( kg )</option>
+                    <option value="Gram"> Gram ( g )</option>
+                    <option value="Tonne"> Tonne ( T )</option>
+                </select>
+                <input class="from-display" type="text" placeholder="Type the Magnitude">
+            </div>
+        </div>
+        <div class="to-unit">
+            <h3 id="tuh">To : </h3>
+            <div class="dis2">
+                <select name="convert" id="to-scale">
+                    <option value="None" selected> ---None--- </option>
+                    <option value="Kilogram"> Kilogram ( kg )</option>
+                    <option value="Gram"> Gram ( g )</option>
+                    <option value="Tonne"> Tonne ( T )</option>
+                </select>
+                <input class="to-display" type="text" disabled placeholder="-">
+            </div>
+        </div>
+        <button class="btn" id="clear">Clear</button>
+        <button class="btn" id="convert">Convert</button>
+    </div>
+    <script src="Mass.js"></script>
+</body>
+</html>
