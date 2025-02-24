@@ -45,50 +45,92 @@ const fig2={
     '1111':'F',
 };
 
-const binconv=(val)=>{
+const dec2bin=(val)=>{
     let value_ts="";
-    let temp=Array.from(val);
-    for(let c of temp){
-        value_ts += fig1[c];
+    let temp=Number(val);
+    let cnt=0;
+    while(temp>0){
+        value_ts+=(temp&1);
+        temp=temp>>1;
+        cnt++;
+        if(cnt===4){
+            value_ts+=" ";
+            cnt=0;
+        }
+    }
+    cnt=0;
+    let i=value_ts.length-1;
+    while(value_ts[i]!==" ")
+        i--;
+    cnt=(i+4)-(value_ts.length-1);
+    while(cnt){
+        value_ts+='0';
+        cnt--;
+    }
+    return value_ts.split('').reverse().join('');;
+};
+
+const dec2hex=(val)=>{
+    let value_ts="";
+    let temp=val.split(" ");
+    for(let i=0;i<temp.length;i++){
+        value_ts+=fig2[temp[i]];
     }
     return value_ts;
 };
 
-const hexconv=(val)=>{
+const hex2bin=(val)=>{
+    let temp=val.split('');
     let value_ts="";
-    let temp;
-    let len=val.length;
-    for(let i=0;i<len;i++){
-        temp="";
-        let j;
-        for(j=i;j<i+4;j++){
-            temp+=val[j];
-        }
-        console.log(temp);
-        i=j;
-        value_ts+=val[temp];
+    for (let i of temp){
+        value_ts+=fig1[i];
+        value_ts+=" ";
     }
     return value_ts;
-}
+};
+
+const bin2hex=(val)=>{
+    let temp=val.split('').reverse();
+    let val_temp="";
+    let cnt=0;
+    for(let i of temp){
+        val_temp+=i;
+        cnt++;
+        if(cnt===4){
+            val_temp+=" ";
+            cnt=0;
+        }
+    }
+    val_temp=val_temp.split('');
+    let i=val_temp.length-1;
+    while(val_temp[i]!==" ")
+        i--;
+    cnt=(i+4)-(val_temp.length-1);
+    while(cnt){
+        val_temp.push('0');
+        cnt--;
+    }
+    return dec2hex(val_temp.reverse().join(''));
+};
 
 const convert=(val)=>{
     if(from_s.value==="Dec" && to_s.value==="Bin"){
-        return binconv(val);
+        return dec2bin(val);
     }
     else if(from_s.value==="Dec" && to_s.value==="Hex"){
-        return hexconv(binconv(val));
+        return dec2hex(binconv(val));
     }
     if(from_s.value==="Hex" && to_s.value==="Bin"){
-        return binconv(val);
+        return hex2bin(val);
     }
     else if(from_s.value==="Hex" && to_s.value==="Dec"){
-        return dec2con(val);
+        return ;
     }
     if(from_s.value==="Bin" && to_s.value==="Dec"){
-        return dec2con(val);
+        return ;
     }
     else if(from_s.value==="Bin" && to_s.value==="Hex"){
-        return dec2con(val);
+        return bin2hex(val);
     }
     else if(from_s.value===to_s.value){
         return from_d.value;
@@ -109,7 +151,7 @@ cont.onkeydown = function(event){
     if(event.key === 'Enter') {
         converter();        
     }
-}
+};
 
 const converter=()=>{
     to_d.value=convert(from_d.value);
