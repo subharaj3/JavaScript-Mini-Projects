@@ -80,7 +80,7 @@ const dec2hex=(val)=>{
 };
 
 const hex2bin=(val)=>{
-    let temp=val.split('');
+    let temp=val.toUpperCase().split('');
     let value_ts="";
     for (let i of temp){
         value_ts+=fig1[i];
@@ -113,26 +113,45 @@ const bin2hex=(val)=>{
     return dec2hex(val_temp.reverse().join(''));
 };
 
+const bin2dec=(val)=>{
+    let value_ts=0;
+    let n=val.length;
+    for(let i=0;i<n;i++){
+        let dec=Number(val[n-i-1]);
+        value_ts+=dec*Math.pow(2,i);
+    }
+    return String(value_ts);
+}
+
+const hex2dec=(val)=>{
+    val=val.toUpperCase().split('');
+    let value_ts='';
+    for(let i of val){
+        value_ts+=fig1[i];
+    }
+    return bin2dec(value_ts);
+}
+
 const convert=(val)=>{
     if(from_s.value==="Dec" && to_s.value==="Bin"){
         return dec2bin(val);
     }
     else if(from_s.value==="Dec" && to_s.value==="Hex"){
-        return dec2hex(binconv(val));
+        return dec2hex(dec2bin(val));
     }
-    if(from_s.value==="Hex" && to_s.value==="Bin"){
+    else if(from_s.value==="Hex" && to_s.value==="Bin"){
         return hex2bin(val);
     }
     else if(from_s.value==="Hex" && to_s.value==="Dec"){
-        return ;
+        return hex2dec(val);
     }
-    if(from_s.value==="Bin" && to_s.value==="Dec"){
-        return ;
+    else if(from_s.value==="Bin" && to_s.value==="Dec"){
+        return bin2dec(val);
     }
     else if(from_s.value==="Bin" && to_s.value==="Hex"){
         return bin2hex(val);
     }
-    else if(from_s.value===to_s.value){
+    else if(from_s.value===to_s.value && from_s.value!=="None"){
         return from_d.value;
     }
     else{
@@ -143,8 +162,6 @@ const convert=(val)=>{
 clr.addEventListener("click",()=>{
     from_d.value="";
     to_d.value="-";
-    from_s.value="None";
-    to_s.value="None";
 });
 
 cont.onkeydown = function(event){

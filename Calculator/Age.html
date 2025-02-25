@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="Age.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="head">Age Converter <i class="fa-solid fa-cake-candles"></i></h1>
+        <div class="container-ins">
+            <div class="dob">
+                <h2 id="dobhead">Enter your Date of Birth : </h2>
+                <input id="dobin" type="date">
+            </div>
+            <div class="todays-date">
+                <h2 id="tdhead">Today's Date : </h2>
+                <div id="tdbin">dd-mm-yyyy</div>
+            </div>
+            <div class="display">
+                <div class="dis-val"><h3>Years: </h3><p id="p3">0000</p></div>
+                <div class="dis-val"><h3>Month: </h3><p id="p2">00</p></div>
+                <div class="dis-val"><h3>Days: </h3><p id="p1">00</p></div>
+            </div>
+            <button class="btn">Calculate</button>
+        </div>
+    </div>
+    <script src="Age.js"></script>
+</body>
+</html>
