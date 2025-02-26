@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investnent Calculator</title>
+    <link rel="stylesheet" href="Investment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Investment Calculator <i class="fa-solid fa-money-bill-trend-up"></i></h1>
+        <div class="option">
+            <label for="op1">
+                <input type="radio" name="choice" value="One-Time" id="op1" class="op" checked> One-Time
+            </label>
+            <label for="op2">
+                <input type="radio" name="choice" value="Recurring" id="op2" class="op"> Recurring
+            </label>
+        </div>
+        <div class="user-val">
+            <div class="dis" id="prin">
+                <h3>Enter the principle amount: </h3>
+                <input type="text" id="prinin" placeholder="E.g. 5000">
+            </div>
+            <div class="dis" id="rate">
+                <h3>Enter the Interest Rate: </h3>
+                <input type="text" id="ratein" placeholder="E.g. 3%">
+            </div>
+            <div class="dis" id="time">
+                <h3>Enter the Time Period: </h3>
+                <input type="text" id="yearin" placeholder="0 years">
+                <input type="text" id="monthin" placeholder="0 months">
+            </div>
+            <div class="dis" id="amt">
+                <div class="total-val">
+                    <h3>Total Value: </h3>
+                    <p id="tvp"></p>
+                </div>
+                <div class="interest">
+                    <h3>Interest Earned: </h3>
+                    <p id="ip"></p>
+                </div>
+            </div>
+        </div>
+        <button class="btn">Calculate</button>
+    </div>
+    <script src="Investment.js"></script>
+</body>
+</html>

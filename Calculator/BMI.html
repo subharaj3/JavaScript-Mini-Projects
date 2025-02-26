@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Converter</title>
+    <link rel="stylesheet" href="BMI.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="head">BMI Calculator <i class="fa-solid fa-weight-scale"></i></h1>
+        <div class="container-ins">
+            <div class="dob">
+                <h2 id="dobhead">Enter your Weight : </h2>
+                <input id="dobin" type="text" placeholder="in kg">
+            </div>
+            <div class="todays-date">
+                <h2 id="tdhead">Enter your height : </h2>
+                <input id="tdbin" type="text" placeholder="in cm">
+            </div>
+            <div class="display">
+                <div class="dis-val"><h3>BMI: </h3><p id="p1">-</p></div>
+                <div class="dis-val">
+                    <div class="ptr-holder">
+                        <div class="ptr"></div>
+                    </div>
+                    <div class="scale"></div>
+                    <div class="message">-</div>
+                </div>
+            </div>
+            <button class="btn">Calculate</button>
+        </div>
+    </div>
+    <script src="BMI.js"></script>
+</body>
+</html>
