@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+h1{
+    color: rgb(255, 201, 144);
+}
+
 body{
     display: flex;
     align-items: center;
@@ -36,6 +40,46 @@ body{
     text-align: center;
 }
 
+.dis{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 38vw;
+    height: 12vh;
+    background-color: #606474;
+}
+
+#prinin,#ratein{
+    width: 12rem;
+    height: 8vh;
+    text-align: center;
+    border-radius: 2rem;
+}
+
+#yearin,#monthin{
+    width: 8rem;
+    height: 8vh;
+    text-align: center;
+    border-radius: 2rem;
+}
+
+#amt{
+    height: 15vh;
+}
+
+.total-val,.interest{
+    height: 10vh;
+    width: 15vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#tvp,#ip{
+    font-size: 1.5rem;
+}
+
 .option{
     display: flex;
     align-items: center;
@@ -48,11 +92,7 @@ body{
 .op{
     width: 1rem;
     height: 1rem;
-    background-color: #ff811a;
-}
-
-.op:checked{
-    background-color: #ff811a;
+    accent-color: rgb(255, 158, 55);
 }
 
 label{
@@ -66,13 +106,13 @@ label{
     bottom: 1rem;
     width: 38vw;
     height: 4rem;
-    background-color: whitesmoke;
+    background-color: rgb(255, 158, 55);
     color: black;
-    font-size: 1rem;
+    font-size: 1.3rem;
     border-bottom-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
 }
 
 .btn:active{
-    background-color: rgb(202, 202, 202);
+    background-color: rgb(255, 132, 0);
 }
