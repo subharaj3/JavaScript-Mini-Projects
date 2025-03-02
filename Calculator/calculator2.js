@@ -3,8 +3,25 @@ const dis2=document.querySelector("p");
 const allclr=document.querySelector("#allclr");
 const clr=document.querySelector("#clr");
 const btns=document.querySelectorAll(".btn");
+
+const container1=document.querySelector(".wholeblock");
+const container2=document.querySelector(".container");
+
+const opts=document.querySelector(".option-selector");
 let val=0.0;
 let flag=false;
+
+opts.addEventListener("change",()=>{
+    let op1=document.querySelector("#Calopt");
+    if(op1.checked){
+        container1.classList.remove("hid");
+        container2.classList.add("hid");
+    }
+    else{
+        container2.classList.remove("hid");
+        container1.classList.add("hid");
+    }
+});
 
 dis1.scrollLeft += dis1.scrollWidth;
 dis2.scrollLeft += dis2.scrollWidth;
@@ -24,7 +41,7 @@ const funcCaller=(a)=>{
         resetdisplay();
     }
     else if(a==="CE"){
-        if(flag){
+        if(flag || dis2.innerText==="0"){
             resetdisplay();
         }
         else{

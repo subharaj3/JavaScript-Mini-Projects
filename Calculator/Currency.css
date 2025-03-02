@@ -7,12 +7,13 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f4e4ba;
+    background-color: aquamarine;
     min-height: 100vh;
 }
 
 .container{
-    background: #fff;
+    background-color: #3f424d;
+    color: white;
     border-radius: 2rem;
     padding: 2rem;
     min-height: 45vh;
@@ -31,6 +32,7 @@ form select,button,input{
 }
 
 form input{
+    width: 94%;
     height: 3rem;
     padding-left: 1rem;
     font-size: 1rem;
@@ -51,6 +53,7 @@ form h3{
 }
 
 .select-container{
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,9 +83,9 @@ form h3{
 }
 
 #btn{
-    background-color: #af4d98;
+    background-color: rgb(255, 158, 55);
     font-size: 1.2rem;
-    color: #fff;
+    color: #000;
     height: 3rem;
     margin-top: 1rem;
 }
