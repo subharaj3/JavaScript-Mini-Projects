@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+p,div{
+    cursor: default;
+}
+
 body{
     display: flex;
     justify-content: center;
@@ -20,7 +24,7 @@ body{
     height: 80vh;
     padding: 5vh;
     border-radius: 2rem;
-    background-color: rgba(0, 0, 255, 0.7);
+    background-color: rgba(0, 0, 255, 0.5);
     backdrop-filter: blur(0.5rem);
     box-shadow: 0rem 0rem 2rem rgba(0, 0, 255, 0.6);
     overflow-y: scroll;
@@ -32,12 +36,21 @@ body{
     align-items: center;
     justify-content: space-between;
     font-size: larger;
-    background-color: #0e2647a5;
+    background-color: #0a2b5a6f;
     padding: 1rem;
     border: 0rem 0rem 2rem rgba(0, 0, 0, 0.4);
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     color: white;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 4vmin;
+    min-height: 4vmin;
+    font-size: 1.5rem;
 }
 
 .temp-container{
@@ -46,8 +59,8 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: #0e2647a5;
-    min-height: 50vmin;
+    background-color: #0a2b5a6f;
+    min-height: 35vmin;
     color: white;
     font-size: 1.2rem;
 }
@@ -72,7 +85,9 @@ body{
 }
 
 .weather-type{
-    margin: 5vh;
+    position: absolute;
+    bottom: 5vh;
+    left: 5vh;
 }
 
 .min-max{
@@ -85,5 +100,134 @@ body{
     text-align: center;
     color: white;
     font-size: 1.2rem;
+    background-color: #0a2b5a6f;
     padding: 2rem;
+    margin-top: 0.5rem;
+}
+
+.wind,.srsstime,.ex{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1rem;
+    background-color: #0a2b5a6f;
+    color: white;
+    margin-top: 0.5rem;
+}
+
+.wind{
+    justify-content: space-between;
+    min-height: 11vmin;
+}
+
+.vis-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.srsstime{
+    display: flex;
+    flex-direction: column;
+    min-height: 10vmin;
+}
+
+.level1-extra-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 50%;
+}
+
+.level2-extra-info{
+    display: flex;
+    justify-content: space-between;
+    min-width: 50%;
+}
+
+.extra-info{
+    display: flex;
+    flex-direction: column;
+}
+
+.ex{
+    display: flex;
+    flex-direction: column;
+    width: 22vmin;
+    justify-content: space-around;
+}
+
+.day5-forecast{
+    display: flex;
+    flex-direction: column;
+    background-color: #0a2b5a6f;
+    margin-top: 0.5rem;
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+#day5-forecast-head{
+    font-size: 1.5rem;
+    margin: 0.5rem;
+}
+
+.days{
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 1.2rem;
+}
+
+.attri{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.vis-dir-cont{
+    border-radius: 50%;
+    border: 0.3rem solid #1c286dc8;
+    width: 48%;
+    height: 100%;
+    position: relative;
+}
+
+.vis-dir,.arr{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.arr{
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 100;
+}
+
+.vis-dir-ele{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#vis-dir-we{
+    display: flex;
+    justify-content: space-between;
+}
+
+.day5-forecast:hover,#aqi:hover,.header:hover{
+    background-color: #0a2b5a5a;
+    cursor: pointer;
+    color: rgb(216, 216, 216);
 }
