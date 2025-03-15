@@ -8,98 +8,147 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div class="location">
-                <p id="location-para">Durgapur,West Bengal</p>
-            </div>
-            <div class="Date">
-                <p id="date-para">05/03/2025</p>
-            </div>
+    <div class="searchbox hid">
+        <div class="back" id="back1">
+            <i class="fa-solid fa-arrow-left"></i>
         </div>
-        <div class="temp-container">
-            <div class="main-temp">
-                <p id="main-temp-para">28 &deg; C</p>
-                <div id="main-temp-icon">
-                    <img src="https://img.icons8.com/?size=100&id=arTIUtO5zOTy&format=png&color=000000" alt="">
+        <input type="text" id="search" placeholder="Enter City,State,Country...">
+    </div>
+    <div class="main-cont">
+        <div class="container">
+            <div class="header">
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="location">
+                    <p id="location-para">City,State,Country</p>
+                </div>
+                <div class="Date">
+                    <p id="date-para">-/-/-</p>
                 </div>
             </div>
-            <div class="weather-type">
-                <p id="weather-type-para">Clear</p>
+            <div class="temp-container">
+                <div class="main-temp">
+                    <p id="main-temp-para">- &deg; C</p>
+                    <div id="main-temp-icon">
+                        <img id="main-temp-icon-img" src="https://img.icons8.com/?size=100&id=arTIUtO5zOTy&format=png&color=000000" alt="">
+                    </div>
+                </div>
+                <div class="weather-type">
+                    <p id="weather-type-para">-</p>
+                </div>
+                <div class="min-max">
+                    <p id="min-max-temp">-&deg;/-&deg;</p>
+                </div>
             </div>
-            <div class="min-max">
-                <p id="min-max-temp">32&deg;/15&deg;</p>
-            </div>
-        </div>
-        <p id="aqi"><i class="fa-solid fa-mask-ventilator"></i> AQI 120</p>
-        <div class="extra-info">
-            <div class="level2-extra-info">
-                <div class="level1-extra-info">
-                    <div class="wind">
-                        <div class="vis-info">
-                            <p id="dir">NorthWest</p>
-                            <p id="speed">23.7km/h</p>
-                        </div>
-                        <div class="vis-dir-cont">
-                            <div class="vis-dir">
-                                <div class="vis-dir-ele" id="vis-dir-n">N</div>
-                                <div class="vis-dir-ele" id="vis-dir-we">
-                                    <p>W</p>
-                                    <p>E</p>
+            <p id="aqi"><i class="fa-solid fa-mask-ventilator"></i> AQI -</p>
+            <div class="extra-info">
+                <div class="level2-extra-info">
+                    <div class="level1-extra-info">
+                        <div class="wind">
+                            <div class="vis-info">
+                                <p id="dir">Direction</p>
+                                <p id="speed">-km/h</p>
+                            </div>
+                            <div class="vis-dir-cont">
+                                <div class="vis-dir">
+                                    <div class="vis-dir-ele" id="vis-dir-n">N</div>
+                                    <div class="vis-dir-ele" id="vis-dir-we">
+                                        <p>W</p>
+                                        <p>E</p>
+                                    </div>
+                                    <div class="vis-dir-ele" id="vis-dir-s">S</div>
                                 </div>
-                                <div class="vis-dir-ele" id="vis-dir-s">S</div>
-                            </div>
-                            <div class="arr">
-                                <i class="fa-solid fa-arrow-up-long"></i>
+                                <div class="arr">
+                                    <i class="fa-solid fa-arrow-up-long"></i>
+                                </div>
                             </div>
                         </div>
+                        <div class="srsstime">
+                            <p id="sr-para">-:- Sunrise</p>
+                            <p id="ss-para">-:- Sunset</p>
+                        </div>
                     </div>
-                    <div class="srsstime">
-                        <p class="srssstime-para">06:30 Sunrise</p>
-                        <p class="srssstime-para">17:45 Sunset</p>
+                    <div class="ex">
+                        <div class="attri">
+                            <p class="attri1">Humidity</p>
+                            <p class="attri2" id="hum-para">-%</p>
+                        </div>
+                        <div class="attri">
+                            <p class="attri1">Real Feel</p>
+                            <p class="attri2" id="RF-para">-&deg;</p>
+                        </div>
+                        <div class="attri">
+                            <p class="attri1">UV</p>
+                            <p class="attri2" id="UV-para">-</p>
+                        </div>
+                        <div class="attri">
+                            <p class="attri1">Pressure</p>
+                            <p class="attri2" id="pressure-para">-atm</p>
+                        </div>
+                        <div class="attri">
+                            <p class="attri1">Chance of Rain</p>
+                            <p class="attri2" id="chance-rain-para">-%</p>
+                        </div>
                     </div>
                 </div>
-                <div class="ex">
-                    <div class="attri">
-                        <p class="attri1">Humidity</p>
-                        <p class="attri2">26%</p>
-                    </div>
-                    <div class="attri">
-                        <p class="attri1">Real Feel</p>
-                        <p class="attri2">29&deg;</p>
-                    </div>
-                    <div class="attri">
-                        <p class="attri1">UV</p>
-                        <p class="attri2">7</p>
-                    </div>
-                    <div class="attri">
-                        <p class="attri1">Pressure</p>
-                        <p class="attri2">0.99atm</p>
-                    </div>
-                    <div class="attri">
-                        <p class="attri1">Chance of Rain</p>
-                        <p class="attri2">0%</p>
+                <div class="day5-forecast">
+                    <p id="day5-forecast-head">5-Day Forecast</p>
+                    <div class="days">
+                        <div class="day">
+                            <p class="day-para">Tomorrow</p>
+                            <p class="temp" id="day-para-0temp">-&deg; / -&deg;</p>
+                        </div>
+                        <div class="day">
+                            <p class="day-para" id="day-para-1text">-</p>
+                            <p class="temp" id="day-para-1temp">-&deg; / -&deg;</p>
+                        </div>
+                        <div class="day">
+                            <p class="day-para" id="day-para-2text">-</p>
+                            <p class="temp" id="day-para-2temp">-&deg; / -&deg;</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="day5-forecast">
-                <p id="day5-forecast-head">5-Day Forecast</p>
-                <div class="days">
-                    <div class="day">
-                        <p class="day-para">Today</p>
-                        <p class="temp">34&deg; / 15&deg;</p>
-                    </div>
-                    <div class="day">
-                        <p class="day-para">Tomorrow</p>
-                        <p class="temp">30&deg; / 14&deg;</p>
-                    </div>
-                    <div class="day">
-                        <p class="day-para">Fri</p>
-                        <p class="temp">31&deg; / 13&deg;</p>
-                    </div>
+        </div>
+    </div>
+    <div class="container-aqi hid">
+        <div class="back" id="back2">
+            <i class="fa-solid fa-arrow-left"></i>
+        </div>
+        <div class="container-aqi-inner">
+            <div class="head">
+                <h1 class="main-head">Air Quality Index</h1>
+                <div class="aqi-head-text">-</div>
+            </div>
+            <div class="main-cont-aqi">
+                <h1 id="main-cont-aqi-paraval">-</h1>
+                <p id="main-cont-aqi-paratype">Moderate</p>
+            </div>
+            <div class="More-Details">
+                <div class="detail">
+                    <div class="val" id="PM2Val">-</div>
+                    <div class="type">PM2.5</div>
+                </div>
+                <div class="detail">
+                    <div class="val" id="PM10Val">-</div>
+                    <div class="type">PM10</div>
+                </div>
+                <div class="detail">
+                    <div class="val" id="SOVal">-</div>
+                    <div class="type">SO<sub>2</sub></div>
+                </div>
+                <div class="detail">
+                    <div class="val" id="NOVal">-</div>
+                    <div class="type">NO<sub>2</sub></div>
+                </div>
+                <div class="detail">
+                    <div class="val" id="OVal">-</div>
+                    <div class="type">O<sub>3</sub></div>
+                </div>
+                <div class="detail">
+                    <div class="val" id="COVal">-</div>
+                    <div class="type">CO</div>
                 </div>
             </div>
         </div>
