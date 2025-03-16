@@ -111,6 +111,18 @@ searchboxInput.onkeydown=(evt)=>{
     }
 }
 
+const aqiContView=()=>{
+    AqiCont.classList.remove('hid');
+    AqiCont.style.animation='slideup 1s ease';
+    mainCont.classList.add('fil');
+}
+
+const day5forecastview=()=>{
+    cont5day.classList.remove('hid');
+    cont5day.style.animation='slideside 1s ease';
+    mainCont.classList.add('fil');
+}
+
 const ValueChanger=async (placeVal)=>{
     placeText.innerText=placeVal;
     placeVal=placeVal.split(',');
@@ -119,154 +131,176 @@ const ValueChanger=async (placeVal)=>{
     city=placeVal[0].replace(' ','%20');
 
     let Coordinate = `https://geocoding-api.open-meteo.com/v1/search?name=${city}&country=${country}&count=1&language=en&format=json`;
-    let promise=await fetch(Coordinate);
-    data=await promise.json();
+    try{
+        let promise=await fetch(Coordinate);
+        data=await promise.json();
 
-    let latitude=data['results'][0]['latitude'];
-    let longitude=data['results'][0]['longitude'];
+        let latitude=data['results'][0]['latitude'];
+        let longitude=data['results'][0]['longitude'];
 
-    let Weather = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=uv_index_max,sunset,temperature_2m_max,temperature_2m_min,sunrise,wind_speed_10m_max,weather_code,precipitation_probability_max,wind_direction_10m_dominant&current=wind_speed_10m,is_day,temperature_2m,wind_direction_10m,precipitation,apparent_temperature,weather_code,relative_humidity_2m,surface_pressure&timezone=auto`;
-    promise=await fetch(Weather);
-    data=await promise.json();
+        let Weather = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=uv_index_max,sunset,temperature_2m_max,temperature_2m_min,sunrise,wind_speed_10m_max,weather_code,precipitation_probability_max,wind_direction_10m_dominant&current=wind_speed_10m,is_day,temperature_2m,wind_direction_10m,precipitation,apparent_temperature,weather_code,relative_humidity_2m,surface_pressure&timezone=auto`;
+        promise=await fetch(Weather);
+        data=await promise.json();
 
-    if(data['current']['is_day']==0){
-        body.style.background='url("Night.jpg") no-repeat';
-        body.style.backgroundSize='cover';
-        mainTempIcon.src='moon.png';
-    }
-    else{
-        body.style.background='url("back.jpg") no-repeat';
-        body.style.backgroundSize='cover';
-        mainTempIcon.src='https://img.icons8.com/?size=100&id=arTIUtO5zOTy&format=png&color=000000';
-    }
+        if(data['current']['is_day']==0){
+            body.style.background='url("Night.jpg") no-repeat';
+            body.style.backgroundSize='cover';
+            mainTempIcon.src='moon.png';
+        }
+        else{
+            body.style.background='url("back.jpg") no-repeat';
+            body.style.backgroundSize='cover';
+            mainTempIcon.src='https://img.icons8.com/?size=100&id=arTIUtO5zOTy&format=png&color=000000';
+        }
 
-    if(data['current']['wind_direction_10m']>10 && data['current']['wind_direction_10m']<=80){
-        direction.innerText='North-East';
-    }
-    else if(data['current']['wind_direction_10m']>80 && data['current']['wind_direction_10m']<=100){
-        direction.innerText='East';
-    }
-    else if(data['current']['wind_direction_10m']>100 && data['current']['wind_direction_10m']<=170){
-        direction.innerText='South-East';
-    }
-    else if(data['current']['wind_direction_10m']>170 && data['current']['wind_direction_10m']<=190){
-        direction.innerText='South';
-    }
-    else if(data['current']['wind_direction_10m']>190 && data['current']['wind_direction_10m']<=260){
-        direction.innerText='South-West';
-    }
-    else if(data['current']['wind_direction_10m']>260 && data['current']['wind_direction_10m']<=280){
-        direction.innerText='West';
-    }
-    else if(data['current']['wind_direction_10m']>280 && data['current']['wind_direction_10m']<=350){
-        direction.innerText='North-West';
-    }
-    else{
-        direction.innerText='North';
-    }
+        if(data['current']['wind_direction_10m']>10 && data['current']['wind_direction_10m']<=80){
+            direction.innerText='North-East';
+        }
+        else if(data['current']['wind_direction_10m']>80 && data['current']['wind_direction_10m']<=100){
+            direction.innerText='East';
+        }
+        else if(data['current']['wind_direction_10m']>100 && data['current']['wind_direction_10m']<=170){
+            direction.innerText='South-East';
+        }
+        else if(data['current']['wind_direction_10m']>170 && data['current']['wind_direction_10m']<=190){
+            direction.innerText='South';
+        }
+        else if(data['current']['wind_direction_10m']>190 && data['current']['wind_direction_10m']<=260){
+            direction.innerText='South-West';
+        }
+        else if(data['current']['wind_direction_10m']>260 && data['current']['wind_direction_10m']<=280){
+            direction.innerText='West';
+        }
+        else if(data['current']['wind_direction_10m']>280 && data['current']['wind_direction_10m']<=350){
+            direction.innerText='North-West';
+        }
+        else{
+            direction.innerText='North';
+        }
 
-    mainTempPara.innerText=`${data['current']['temperature_2m']} ° C`;
-    TypePara.innerText=type[data['current']['weather_code']][0];
-    mainTempIcon.src=type[data['current']['weather_code']][1];
-    minMaxTemp.innerText=`${data['daily']['temperature_2m_max'][0]} ° C / ${data['daily']['temperature_2m_min'][0]} ° C`;
-    speed.innerText=`${data['current']['wind_speed_10m']} km/h`;
-    arr.style.transform=`rotate(${data['current']['wind_direction_10m']}deg)`;
-    sunRisePara.innerText=`Sunrise: ${data['daily']['sunrise'][0].split('T')[1]}`;
-    sunSetPara.innerText=`Sunset: ${data['daily']['sunset'][0].split('T')[1]}`;
-    HumPara.innerText=`${data['current']['relative_humidity_2m']} %`;
-    RFpara.innerText=`${data['current']['apparent_temperature']} °C`;
-    UVPara.innerText=data['daily']['uv_index_max'][0];
-    PressurePara.innerText=`${(data['current']['surface_pressure']/1000).toFixed(2)} atm`;
-    ChanceRainPara.innerText=`${data['daily']['precipitation_probability_max'][0]} %`;
-    DayPara1Text.innerText=`${data['daily']['time'][2]}`;
-    DayPara2Text.innerText=`${data['daily']['time'][3]}`;
-    DayPara0Temp.innerText=`${data['daily']['temperature_2m_max'][1]} ° / ${data['daily']['temperature_2m_min'][1]} °`;
-    DayPara1Temp.innerText=`${data['daily']['temperature_2m_max'][2]} ° / ${data['daily']['temperature_2m_min'][2]} °`;
-    DayPara2Temp.innerText=`${data['daily']['temperature_2m_max'][3]} ° / ${data['daily']['temperature_2m_min'][3]} °`;
+        mainTempPara.innerText=`${data['current']['temperature_2m']} ° C`;
+        TypePara.innerText=type[data['current']['weather_code']][0];
+        mainTempIcon.src=type[data['current']['weather_code']][1];
+        minMaxTemp.innerText=`${data['daily']['temperature_2m_max'][0]} ° C / ${data['daily']['temperature_2m_min'][0]} ° C`;
+        speed.innerText=`${data['current']['wind_speed_10m']} km/h`;
+        arr.classList.remove('hid');
+        arr.style.transform=`rotate(${data['current']['wind_direction_10m']}deg)`;
+        sunRisePara.innerText=`Sunrise: ${data['daily']['sunrise'][0].split('T')[1]}`;
+        sunSetPara.innerText=`Sunset: ${data['daily']['sunset'][0].split('T')[1]}`;
+        HumPara.innerText=`${data['current']['relative_humidity_2m']} %`;
+        RFpara.innerText=`${data['current']['apparent_temperature']} °C`;
+        UVPara.innerText=data['daily']['uv_index_max'][0];
+        PressurePara.innerText=`${(data['current']['surface_pressure']/1000).toFixed(2)} atm`;
+        ChanceRainPara.innerText=`${data['daily']['precipitation_probability_max'][0]} %`;
+        DayPara1Text.innerText=`${data['daily']['time'][2]}`;
+        DayPara2Text.innerText=`${data['daily']['time'][3]}`;
+        DayPara0Temp.innerText=`${data['daily']['temperature_2m_max'][1]} ° / ${data['daily']['temperature_2m_min'][1]} °`;
+        DayPara1Temp.innerText=`${data['daily']['temperature_2m_max'][2]} ° / ${data['daily']['temperature_2m_min'][2]} °`;
+        DayPara2Temp.innerText=`${data['daily']['temperature_2m_max'][3]} ° / ${data['daily']['temperature_2m_min'][3]} °`;
 
-    let i=1;
-    day5Para.forEach((each)=>{
-        each.innerText=data['daily']['time'][i];
-        i++;
-    });
-    i=1;
-    dayParaType.forEach((each)=>{
-        each.src=type[data['daily']['weather_code'][i]][1];
-        i++;
-    });
-    i=1;
-    max.forEach((each)=>{
-        each.innerText=`${data['daily']['temperature_2m_max'][i]} °C`;
-        i++;
-    });
-    i=1;
-    min.forEach((each)=>{
-        each.innerText=`${data['daily']['temperature_2m_min'][i]} °C`;
-        i++;
-    });
-    i=1;
-    speedPara.forEach((each)=>{
-        each.innerText=`${data['daily']['wind_speed_10m_max'][i]} km/h`;
-        i++;
-    });
-    i=1;
-    iconPara.forEach((each)=>{
-        each.style.transform=`rotate(${data['daily']['wind_direction_10m_dominant'][i]}deg)`;
-        i++;
-    });
+        let i=1;
+        day5Para.forEach((each)=>{
+            each.innerText=data['daily']['time'][i];
+            i++;
+        });
+        i=1;
+        dayParaType.forEach((each)=>{
+            each.src=type[data['daily']['weather_code'][i]][1];
+            i++;
+        });
+        i=1;
+        max.forEach((each)=>{
+            each.innerText=`${data['daily']['temperature_2m_max'][i]} °C`;
+            i++;
+        });
+        i=1;
+        min.forEach((each)=>{
+            each.innerText=`${data['daily']['temperature_2m_min'][i]} °C`;
+            i++;
+        });
+        i=1;
+        speedPara.forEach((each)=>{
+            each.innerText=`${data['daily']['wind_speed_10m_max'][i]} km/h`;
+            i++;
+        });
+        i=1;
+        iconPara.forEach((each)=>{
+            each.style.transform=`rotate(${data['daily']['wind_direction_10m_dominant'][i]}deg)`;
+            i++;
+        });
 
-    let Aqiurl=`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=ozone,carbon_monoxide,nitrogen_dioxide,pm10,sulphur_dioxide,pm2_5`;
-    promise=await fetch(Aqiurl);
-    data=await promise.json();
-    aqi.innerHTML=`<i class="fa-solid fa-mask-ventilator"></i> AQI - ${data["current"]['pm2_5']}`;
+        let Aqiurl=`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=ozone,carbon_monoxide,nitrogen_dioxide,pm10,sulphur_dioxide,pm2_5`;
+        promise=await fetch(Aqiurl);
+        data=await promise.json();
+        aqi.innerHTML=`<i class="fa-solid fa-mask-ventilator"></i> AQI - ${data["current"]['pm2_5']}`;
 
-    if(data["current"]['pm2_5']<=50){
-        AqiMainContType.innerText='Good';
+        if(data["current"]['pm2_5']<=50){
+            AqiMainContType.innerText='Good';
+        }
+        else if(data['current']['pm2_5']>50 && data['current']['pm2_5']<=100){
+            AqiMainContType.innerText='Moderate';
+        }
+        else if(data['current']['pm2_5']>100 && data['current']['pm2_5']<=200){
+            AqiMainContType.innerText='Unhealthy for Sensitive Groups';
+        }
+        else if(data['current']['pm2_5']>200 && data['current']['pm2_5']<=300){
+            AqiMainContType.innerText='Unhealthy';
+        }
+        else if(data['current']['pm2_5']>300 && data['current']['pm2_5']<=400){
+            AqiMainContType.innerText='Very Unhealthy';
+        }
+        else{
+            AqiMainContType.innerText='Hazardous';
+        }
+    
+        AQIHeadText.innerText=`${city.replace('%20',' ')} Published at ${data["current"]['time'].split('T')[1]}`;
+        AqiMainContVal.innerText=data["current"]['pm2_5'];
+        PM2val.innerText=data["current"]['pm2_5'];
+        PM10val.innerText=data["current"]['pm10'];
+        SOval.innerText=data["current"]['sulphur_dioxide'];
+        NOval.innerText=data["current"]['nitrogen_dioxide'];
+        Oval.innerText=data["current"]['ozone'];
+        COval.innerText=data["current"]['carbon_monoxide'];
+
+        aqi.addEventListener("click",aqiContView);
+
+        back2.addEventListener('click',()=>{
+            AqiCont.classList.add('hid');
+            mainCont.classList.remove('fil');
+        });
+
+        day5forecast.addEventListener("click",day5forecastview);
+
+        back3.addEventListener('click',()=>{
+            cont5day.classList.add('hid');
+            mainCont.classList.remove('fil');
+        });
     }
-    else if(data['current']['pm2_5']>50 && data['current']['pm2_5']<=100){
-        AqiMainContType.innerText='Moderate';
+    catch{
+        placeText.innerText='Invalid';
+        alert('Invalid City Name');
+        direction.innerText="-";
+        mainTempPara.innerText="-";
+        TypePara.innerText="-";
+        mainTempIcon.src="";
+        minMaxTemp.innerText="-";
+        speed.innerText="-";
+        arr.style.transform="-";
+        sunRisePara.innerText="-";
+        sunSetPara.innerText="-";
+        HumPara.innerText="-";
+        RFpara.innerText="-";
+        UVPara.innerText="-";
+        PressurePara.innerText="-";
+        ChanceRainPara.innerText="-";
+        DayPara1Text.innerText="-";
+        DayPara2Text.innerText="-";
+        DayPara0Temp.innerText="-";
+        DayPara1Temp.innerText="-";
+        DayPara2Temp.innerText="-";
+        aqi.innerText="-";
+        arr.classList.add('hid');
+        aqi.removeEventListener("click",aqiContView);
+        day5forecast.removeEventListener("click",day5forecastview);
     }
-    else if(data['current']['pm2_5']>100 && data['current']['pm2_5']<=200){
-        AqiMainContType.innerText='Unhealthy for Sensitive Groups';
-    }
-    else if(data['current']['pm2_5']>200 && data['current']['pm2_5']<=300){
-        AqiMainContType.innerText='Unhealthy';
-    }
-    else if(data['current']['pm2_5']>300 && data['current']['pm2_5']<=400){
-        AqiMainContType.innerText='Very Unhealthy';
-    }
-    else{
-        AqiMainContType.innerText='Hazardous';
-    }
-   
-    AQIHeadText.innerText=`${city.replace('%20',' ')} Published at ${data["current"]['time'].split('T')[1]}`;
-    AqiMainContVal.innerText=data["current"]['pm2_5'];
-    PM2val.innerText=data["current"]['pm2_5'];
-    PM10val.innerText=data["current"]['pm10'];
-    SOval.innerText=data["current"]['sulphur_dioxide'];
-    NOval.innerText=data["current"]['nitrogen_dioxide'];
-    Oval.innerText=data["current"]['ozone'];
-    COval.innerText=data["current"]['carbon_monoxide'];
-
-    aqi.addEventListener("click",()=>{
-        AqiCont.classList.remove('hid');
-        AqiCont.style.animation='slideup 1s ease';
-        mainCont.classList.add('fil');
-    });
-
-    back2.addEventListener('click',()=>{
-        AqiCont.classList.add('hid');
-        mainCont.classList.remove('fil');
-    });
-
-    day5forecast.addEventListener("click",()=>{
-        cont5day.classList.remove('hid');
-        cont5day.style.animation='slideside 1s ease';
-        mainCont.classList.add('fil');
-    });
-
-    back3.addEventListener('click',()=>{
-        cont5day.classList.add('hid');
-        mainCont.classList.remove('fil');
-    });
 };
