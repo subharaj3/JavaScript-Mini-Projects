@@ -4,6 +4,7 @@ let searchboxInput=document.querySelector('#search');
 let mainCont=document.querySelector('.main-cont');
 let back1=document.querySelector('#back1');
 let back2=document.querySelector('#back2');
+let back3=document.querySelector('#back3');
 let dateText=document.querySelector('#date-para');
 let placeText=document.querySelector('#location-para');
 
@@ -27,6 +28,7 @@ let DayPara0Temp=document.querySelector('#day-para-0temp');
 let DayPara1Temp=document.querySelector('#day-para-1temp');
 let DayPara2Temp=document.querySelector('#day-para-2temp');
 let aqi=document.querySelector('#aqi');
+let day5forecast=document.querySelector('.day5-forecast');
 let direction=document.querySelector('#dir');
 
 let AqiCont=document.querySelector('.container-aqi');
@@ -40,36 +42,44 @@ let Oval=document.querySelector('#OVal');
 let COval=document.querySelector('#COVal');
 let AQIHeadText=document.querySelector('.aqi-head-text');
 
+let cont5day=document.querySelector('.container-5day');
+let day5Para=document.querySelectorAll(".day5-para");
+let dayParaType=document.querySelectorAll(".day-para-type");
+let min=document.querySelectorAll(".min");
+let max=document.querySelectorAll(".max");
+let iconPara=document.querySelectorAll(".icon-para");
+let speedPara=document.querySelectorAll(".speed-para");
+
 const date=new Date();
 const type={
-    0:'Clear',
-    1:'Mainly Clear',
-    2:'Partly Cloud',
-    3:'Overcast',
-    45:'Fog',
-    48:'Depositing Fog',
-    51:'Light Drizzle',
-    53:'Moderate Drizzle',
-    55:'Heavy Drizzle',
-    56:'Light Freezing Drizzle',
-    57:'Heavy Freezing Drizzle',
-    61:'Light Rain',
-    63:'Moderate Rain',
-    65:'Heavy Rain',
-    66:'Light Freezing Rain',
-    67:'Heavy Freezing Rain',
-    71:'Light Snow Fall',
-    73:'Moderate Snow Fall',
-    75:'Heavy Snow Fall',
-    77:'Snow grains',
-    80:'Light Rain Showers',
-    81:'Moderate Rain Showers',
-    82:'Heavy Rain Showers',
-    85:'Light Snow Showers',
-    85:'Heavy Snow Showers',
-    95:'Thunderstorm',
-    96:'Thunder with Light Hail',
-    99:'Thunder with Heavy Hail',
+    0:['Clear','https://img.icons8.com/?size=100&id=arTIUtO5zOTy&format=png&color=000000'],
+    1:['Mainly Clear','pngwing.com.png'],
+    2:['Partly Cloud','pngwing.com3.png'],
+    3:['Overcast','pngwing.com4.png'],
+    45:['Fog','pngwing.com5.png'],
+    48:['Depositing Fog','pngwing.com6.png'],
+    51:['Light Drizzle','pngwing.com7.png'],
+    53:['Moderate Drizzle','pngwing.com8.png'],
+    55:['Heavy Drizzle','pngwing.com8.png'],
+    56:['Light Freezing Drizzle','pngwing.com10.png'],
+    57:['Heavy Freezing Drizzle','pngwing.com11.png'],
+    61:['Light Rain','pngwing.com12.png'],
+    63:['Moderate Rain','pngwing.com13.png'],
+    65:['Heavy Rain','pngwing.com14.png'],
+    66:['Light Freezing Rain','pngwing.com15.png'],
+    67:['Heavy Freezing Rain','pngwing.com16.png'],
+    71:['Light Snow Fall','pngwing.com17.png'],
+    73:['Moderate Snow Fall','pngwing.com18.png'],
+    75:['Heavy Snow Fall','pngwing.com19.png'],
+    77:['Snow grains','pngwing.com20.png'],
+    80:['Light Rain Showers','pngwing.com21.png'],
+    81:['Moderate Rain Showers','pngwing.com22.png'],
+    82:['Heavy Rain Showers','pngwing.com23.png'],
+    85:['Light Snow Showers','pngwing.com24.png'],
+    85:['Heavy Snow Showers','pngwing.com25.png'],
+    95:['Thunderstorm','pngwing.com27.png'],
+    96:['Thunder with Light Hail','pngwing.com28.png'],
+    99:['Thunder with Heavy Hail','pngwing.com29.png'],
 }
 
 let td=date.getDate();
@@ -123,13 +133,11 @@ const ValueChanger=async (placeVal)=>{
         body.style.background='url("Night.jpg") no-repeat';
         body.style.backgroundSize='cover';
         mainTempIcon.src='moon.png';
-        mainTempIcon.style.animation='none';
     }
     else{
         body.style.background='url("back.jpg") no-repeat';
         body.style.backgroundSize='cover';
         mainTempIcon.src='https://img.icons8.com/?size=100&id=arTIUtO5zOTy&format=png&color=000000';
-        mainTempIcon.style.animation='rotatesun 10s linear infinite 0s';
     }
 
     if(data['current']['wind_direction_10m']>10 && data['current']['wind_direction_10m']<=80){
@@ -158,7 +166,8 @@ const ValueChanger=async (placeVal)=>{
     }
 
     mainTempPara.innerText=`${data['current']['temperature_2m']} ° C`;
-    TypePara.innerText=type[data['current']['weather_code']];
+    TypePara.innerText=type[data['current']['weather_code']][0];
+    mainTempIcon.src=type[data['current']['weather_code']][1];
     minMaxTemp.innerText=`${data['daily']['temperature_2m_max'][0]} ° C / ${data['daily']['temperature_2m_min'][0]} ° C`;
     speed.innerText=`${data['current']['wind_speed_10m']} km/h`;
     arr.style.transform=`rotate(${data['current']['wind_direction_10m']}deg)`;
@@ -174,6 +183,37 @@ const ValueChanger=async (placeVal)=>{
     DayPara0Temp.innerText=`${data['daily']['temperature_2m_max'][1]} ° / ${data['daily']['temperature_2m_min'][1]} °`;
     DayPara1Temp.innerText=`${data['daily']['temperature_2m_max'][2]} ° / ${data['daily']['temperature_2m_min'][2]} °`;
     DayPara2Temp.innerText=`${data['daily']['temperature_2m_max'][3]} ° / ${data['daily']['temperature_2m_min'][3]} °`;
+
+    let i=1;
+    day5Para.forEach((each)=>{
+        each.innerText=data['daily']['time'][i];
+        i++;
+    });
+    i=1;
+    dayParaType.forEach((each)=>{
+        each.src=type[data['daily']['weather_code'][i]][1];
+        i++;
+    });
+    i=1;
+    max.forEach((each)=>{
+        each.innerText=`${data['daily']['temperature_2m_max'][i]} °C`;
+        i++;
+    });
+    i=1;
+    min.forEach((each)=>{
+        each.innerText=`${data['daily']['temperature_2m_min'][i]} °C`;
+        i++;
+    });
+    i=1;
+    speedPara.forEach((each)=>{
+        each.innerText=`${data['daily']['wind_speed_10m_max'][i]} km/h`;
+        i++;
+    });
+    i=1;
+    iconPara.forEach((each)=>{
+        each.style.transform=`rotate(${data['daily']['wind_direction_10m_dominant'][i]}deg)`;
+        i++;
+    });
 
     let Aqiurl=`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=ozone,carbon_monoxide,nitrogen_dioxide,pm10,sulphur_dioxide,pm2_5`;
     promise=await fetch(Aqiurl);
@@ -217,5 +257,16 @@ const ValueChanger=async (placeVal)=>{
     back2.addEventListener('click',()=>{
         AqiCont.classList.add('hid');
         mainCont.classList.remove('fil');
-    });    
+    });
+
+    day5forecast.addEventListener("click",()=>{
+        cont5day.classList.remove('hid');
+        cont5day.style.animation='slideside 1s ease';
+        mainCont.classList.add('fil');
+    });
+
+    back3.addEventListener('click',()=>{
+        cont5day.classList.add('hid');
+        mainCont.classList.remove('fil');
+    });
 };
