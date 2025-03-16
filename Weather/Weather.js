@@ -145,12 +145,10 @@ const ValueChanger=async (placeVal)=>{
         if(data['current']['is_day']==0){
             body.style.background='url("Night.jpg") no-repeat';
             body.style.backgroundSize='cover';
-            mainTempIcon.src='moon.png';
         }
         else{
             body.style.background='url("back.jpg") no-repeat';
             body.style.backgroundSize='cover';
-            mainTempIcon.src='https://img.icons8.com/?size=100&id=arTIUtO5zOTy&format=png&color=000000';
         }
 
         if(data['current']['wind_direction_10m']>10 && data['current']['wind_direction_10m']<=80){
@@ -181,6 +179,9 @@ const ValueChanger=async (placeVal)=>{
         mainTempPara.innerText=`${data['current']['temperature_2m']} ° C`;
         TypePara.innerText=type[data['current']['weather_code']][0];
         mainTempIcon.src=type[data['current']['weather_code']][1];
+        if(data['current']['is_day']==0 && data['current']['weather_code']==0){
+            mainTempIcon.src='moon.png';
+        }
         minMaxTemp.innerText=`${data['daily']['temperature_2m_max'][0]} ° C / ${data['daily']['temperature_2m_min'][0]} ° C`;
         speed.innerText=`${data['current']['wind_speed_10m']} km/h`;
         arr.classList.remove('hid');
