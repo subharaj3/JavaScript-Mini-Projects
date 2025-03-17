@@ -53,33 +53,33 @@ let speedPara=document.querySelectorAll(".speed-para");
 const date=new Date();
 const type={
     0:['Clear','https://img.icons8.com/?size=100&id=arTIUtO5zOTy&format=png&color=000000'],
-    1:['Mainly Clear','pngwing.com.png'],
-    2:['Partly Cloud','pngwing.com3.png'],
-    3:['Overcast','pngwing.com4.png'],
-    45:['Fog','pngwing.com5.png'],
-    48:['Depositing Fog','pngwing.com6.png'],
-    51:['Light Drizzle','pngwing.com7.png'],
-    53:['Moderate Drizzle','pngwing.com8.png'],
-    55:['Heavy Drizzle','pngwing.com8.png'],
-    56:['Light Freezing Drizzle','pngwing.com10.png'],
-    57:['Heavy Freezing Drizzle','pngwing.com11.png'],
-    61:['Light Rain','pngwing.com12.png'],
-    63:['Moderate Rain','pngwing.com13.png'],
-    65:['Heavy Rain','pngwing.com14.png'],
-    66:['Light Freezing Rain','pngwing.com15.png'],
-    67:['Heavy Freezing Rain','pngwing.com16.png'],
-    71:['Light Snow Fall','pngwing.com17.png'],
-    73:['Moderate Snow Fall','pngwing.com18.png'],
-    75:['Heavy Snow Fall','pngwing.com19.png'],
-    77:['Snow grains','pngwing.com20.png'],
-    80:['Light Rain Showers','pngwing.com21.png'],
-    81:['Moderate Rain Showers','pngwing.com22.png'],
-    82:['Heavy Rain Showers','pngwing.com23.png'],
-    85:['Light Snow Showers','pngwing.com24.png'],
-    85:['Heavy Snow Showers','pngwing.com25.png'],
-    95:['Thunderstorm','pngwing.com27.png'],
-    96:['Thunder with Light Hail','pngwing.com28.png'],
-    99:['Thunder with Heavy Hail','pngwing.com29.png'],
+    1:['Mainly Clear','Photos/pngwing.com.png'],
+    2:['Partly Cloud','Photos/pngwing.com3.png'],
+    3:['Overcast','Photos/pngwing.com4.png'],
+    45:['Fog','Photos/pngwing.com5.png'],
+    48:['Depositing Fog','Photos/pngwing.com6.png'],
+    51:['Light Drizzle','Photos/pngwing.com7.png'],
+    53:['Moderate Drizzle','Photos/pngwing.com8.png'],
+    55:['Heavy Drizzle','Photos/pngwing.com8.png'],
+    56:['Light Freezing Drizzle','Photos/pngwing.com10.png'],
+    57:['Heavy Freezing Drizzle','Photos/pngwing.com11.png'],
+    61:['Light Rain','Photos/pngwing.com12.png'],
+    63:['Moderate Rain','Photos/pngwing.com13.png'],
+    65:['Heavy Rain','Photos/pngwing.com14.png'],
+    66:['Light Freezing Rain','Photos/pngwing.com15.png'],
+    67:['Heavy Freezing Rain','Photos/pngwing.com16.png'],
+    71:['Light Snow Fall','Photos/pngwing.com17.png'],
+    73:['Moderate Snow Fall','Photos/pngwing.com18.png'],
+    75:['Heavy Snow Fall','Photos/pngwing.com19.png'],
+    77:['Snow grains','Photos/pngwing.com20.png'],
+    80:['Light Rain Showers','Photos/pngwing.com21.png'],
+    81:['Moderate Rain Showers','Photos/pngwing.com22.png'],
+    82:['Heavy Rain Showers','Photos/pngwing.com23.png'],
+    85:['Light Snow Showers','Photos/pngwing.com24.png'],
+    85:['Heavy Snow Showers','Photos/pngwing.com25.png'],
+    95:['Thunderstorm','Photos/pngwing.com27.png'],
+    96:['Thunder with Light Hail','Photos/pngwing.com28.png'],
+    99:['Thunder with Heavy Hail','Photos/pngwing.com29.png'],
 }
 
 let td=date.getDate();
@@ -143,11 +143,11 @@ const ValueChanger=async (placeVal)=>{
         data=await promise.json();
 
         if(data['current']['is_day']==0){
-            body.style.background='url("Night.jpg") no-repeat';
+            body.style.background='url("Photos/Night.jpg") no-repeat';
             body.style.backgroundSize='cover';
         }
         else{
-            body.style.background='url("back.jpg") no-repeat';
+            body.style.background='url("Photos/back.jpg") no-repeat';
             body.style.backgroundSize='cover';
         }
 
@@ -180,7 +180,7 @@ const ValueChanger=async (placeVal)=>{
         TypePara.innerText=type[data['current']['weather_code']][0];
         mainTempIcon.src=type[data['current']['weather_code']][1];
         if(data['current']['is_day']==0 && data['current']['weather_code']==0){
-            mainTempIcon.src='moon.png';
+            mainTempIcon.src='Photos/moon.png';
         }
         minMaxTemp.innerText=`${data['daily']['temperature_2m_max'][0]} ° C / ${data['daily']['temperature_2m_min'][0]} ° C`;
         speed.innerText=`${data['current']['wind_speed_10m']} km/h`;
